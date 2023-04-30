@@ -1,4 +1,3 @@
-output "instance_ip_addr" {
-  value = module.apache.sub-public_ip
-  
+output "sub-public_ip" {
+    value = aws_instance.cal_server.public_ip
 }

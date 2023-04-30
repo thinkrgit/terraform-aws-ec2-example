@@ -6,8 +6,7 @@ terraform {
 provider "aws" {
   profile = "default"
   region  = "us-east-2"
-  access_key = "AKIARDISDZD2PI2KR3HE"
-  secret_key = "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"
+  
 }
 
 
@@ -17,7 +16,7 @@ data "aws_vpc" "cal_vpc" {
   id = var.vpc_id
 }
 data "template_file" "user_data" {
-	template = file("./userdata.yaml")
+	template = file("${abspath(path.module)}/userdata.yaml")
 }
 
 resource "aws_security_group" "sg_cal_server" {
@@ -77,8 +76,4 @@ resource "aws_instance" "cal_server" {
     name = var.server_name
   }
  
-}
-
-output "sub-public_ip" {
-    value = aws_instance.cal_server.public_ip
 }
