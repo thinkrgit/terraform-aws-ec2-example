@@ -23,6 +23,7 @@ resource "aws_security_group" "sg_cal_server" {
   name        = "sg_cal_server"
   description = "cal_server security group"
   vpc_id      = data.aws_vpc.cal_vpc.id
+  
 
   ingress {
     description      = "http"
@@ -72,6 +73,9 @@ resource "aws_instance" "cal_server" {
   key_name = aws_key_pair.deployer-key.key_name
   vpc_security_group_ids = [aws_security_group.sg_cal_server.id]
   user_data = data.template_file.user_data.rendered
+
+  subnet_id = var.public_subnet_id
+  
   tags = {
     name = var.server_name
   }

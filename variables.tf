@@ -35,4 +35,12 @@ variable "inst_type" {
 variable "ami" {
    type = string
    default = "ami-02f97949d306b597a"
+
+   
  }
+
+ variable "public_subnet_id" {
+  type        = string
+  description = "The public subnet ID where the instance will be created"
+  default = "subnet-4df4ec25"
+}
